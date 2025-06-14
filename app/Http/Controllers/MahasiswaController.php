@@ -68,14 +68,22 @@ class MahasiswaController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        $request->validate([
-            'NIM' => 'required',
-            'Nama' => 'required',
-            'Alamat' => 'required',
+        $mahasiswa = Mahasiswa::find($id);
+        if (! $mahasiswa) {
+            return redirect()->route('dataMahasiswa')
+                             ->with('error', 'Data Mahasiswa tidak ditemukan.');
+        }
+
+        $validated = $request->validate([
+            'NIM'       => 'required',
+            'Nama'      => 'required',
+            'Alamat'    => 'required',
             'Nama_Ayah' => 'required',
-            'Nama_Ibu' => 'required',
-            // tambahkan validasi lain sesuai kebutuhan
+            'Nama_Ibu'  => 'required',
         ]);
+
+        $mahasiswa->update($validated);
+        
 
         $mahasiswa = Mahasiswa::findOrFail($id);
         $mahasiswa->NIM = $request->NIM;
