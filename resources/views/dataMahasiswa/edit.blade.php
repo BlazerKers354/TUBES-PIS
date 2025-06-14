@@ -35,7 +35,7 @@
             </div>
         </div>
         <div class="mt-3 text-left">
-            <a href="{{ route('dataMahasiswa') }}" id="btn-kembali" class="btn btn-info">Perbarui</a>
+            <button type="submit" class="btn btn-info">Perbarui</button>
             <a href="{{ route('dataMahasiswa') }}" id="btn-kembali" class="btn btn-secondary ml-3">Kembali</a>
         </div>
     </form>

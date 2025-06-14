@@ -32,28 +32,33 @@
                   <div class="text-center">
                     <h1 class="h4 text-gray-900 mb-4">Welcome Back!</h1>
                   </div>
+                  @if(session('success'))
+                    <div class="alert alert-success">
+                      {{ session('success') }}
+                    </div>
+                  @endif
                   <form action="{{ route('login.action') }}" method="POST" class="user">
                     @csrf
                     @if ($errors->any())
-                      <div class="alert alert-danger">
-                          <ul>
-                            @foreach ($errors->all() as $error)
-                              <li>{{ $error }}</li>
-                            @endforeach
-                          </ul>
-                      </div>
+                    <div class="alert alert-danger">
+                      <ul>
+                        @foreach ($errors->all() as $error)
+                        <li>{{ $error }}</li>
+                        @endforeach
+                      </ul>
+                    </div>
                     @endif
                     <div class="form-group">
-                      <input name="email" type="email" class="form-control form-control-user" id="exampleInputEmail" aria-describedby="emailHelp" placeholder="Enter Email Address...">
+                    <input name="email" type="email" class="form-control form-control-user" id="exampleInputEmail" aria-describedby="emailHelp" placeholder="Enter Email Address...">
                     </div>
                     <div class="form-group">
-                      <input name="password" type="password" class="form-control form-control-user" id="exampleInputPassword" placeholder="Password">
+                    <input name="password" type="password" class="form-control form-control-user" id="exampleInputPassword" placeholder="Password">
                     </div>
                     <div class="form-group">
-                      <div class="custom-control custom-checkbox small">
-                        <input name="remember" type="checkbox" class="custom-control-input" id="customCheck">
-                        <label class="custom-control-label" for="customCheck"style="color: blue;background: #fff; border: 2px solid #000; padding: 2px 8px; border-radius: 4px; display: inline-block;">Remember Me</label>
-                      </div>
+                    <div class="custom-control custom-checkbox small">
+                      <input name="remember" type="checkbox" class="custom-control-input" id="customCheck">
+                      <label class="custom-control-label" for="customCheck"style="color: blue;background: #fff; border: 2px solid #000; padding: 2px 8px; border-radius: 4px; display: inline-block;">Remember Me</label>
+                    </div>
                     </div>
                     <button type="submit" class="btn btn-primary btn-block btn-user">Login</button>
                   </form>

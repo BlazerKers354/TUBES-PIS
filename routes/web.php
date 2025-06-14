@@ -51,4 +51,7 @@ Route::get('/profile', [App\Http\Controllers\AuthController::class, 'profile'])-
 Route::post('/profile', [App\Http\Controllers\AuthController::class, 'updateProfile'])->name('profile.update');
     Route::get('/change-password', [App\Http\Controllers\AuthController::class, 'changePassword'])->name('changePassword');
     Route::post('/change-password', [App\Http\Controllers\AuthController::class, 'updatePassword'])->name('changePassword.update');
+
+Route::put('dataMahasiswa/edit/{id}', [MahasiswaController::class, 'update'])->name('dataMahasiswa.update');
+
 });

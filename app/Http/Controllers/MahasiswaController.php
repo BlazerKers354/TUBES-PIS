@@ -68,12 +68,26 @@ class MahasiswaController extends Controller
      */
     public function update(Request $request, string $id)
     {
+        $request->validate([
+            'NIM' => 'required',
+            'Nama' => 'required',
+            'Alamat' => 'required',
+            'Nama_Ayah' => 'required',
+            'Nama_Ibu' => 'required',
+            // tambahkan validasi lain sesuai kebutuhan
+        ]);
+
         $mahasiswa = Mahasiswa::findOrFail($id);
-  
-        $mahasiswa->update($request->all());
-  
-        return redirect()->route('dataMahasiswa')->with('success', 'Data Mahasiswa Berhasil Diperbarui!');
-    }
+        $mahasiswa->NIM = $request->NIM;
+        $mahasiswa->Nama = $request->Nama;
+        $mahasiswa->Alamat = $request->Alamat;
+        $mahasiswa->Nama_Ayah = $request->Nama_Ayah;
+        $mahasiswa->Nama_Ibu = $request->Nama_Ibu;
+        // tambahkan field lain sesuai kebutuhan
+        $mahasiswa->save();
+
+    return redirect()->route('dataMahasiswa')->with('success', 'Data Mahasiswa Berhasil Diperbarui!');
+}
 
     /**
      * Remove the specified resource from storage.
